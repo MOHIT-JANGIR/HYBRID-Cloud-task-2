@@ -129,7 +129,26 @@ But as soon as the developer build job Infrastructure Creation will start automa
 
 ##### Final Output of the project:
 
-![image](https://user-images.githubusercontent.com/61896468/89205393-4a542400-d5d5-11ea-9f69-cbb4ca65bb54.png) 
+![image](https://user-images.githubusercontent.com/61896468/89207006-aae46080-d5d7-11ea-8fad-ca3b500b972f.png)
+
+
+# And The same EnvironmenT can be Destroyed in one Single command i.e.
+
+```
+terraform destroy --auto-approve
+
+
+
+```
+
+
+![image](https://user-images.githubusercontent.com/61896468/89207141-eda63880-d5d7-11ea-987d-8769ff40782f.png)
+
+![image](https://user-images.githubusercontent.com/61896468/89207171-f7c83700-d5d7-11ea-8661-495562cfdfbc.png)
+
+
+
+
 
 # PROJECT COMPLETED...
 
