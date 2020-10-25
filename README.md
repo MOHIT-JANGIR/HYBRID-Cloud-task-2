@@ -22,7 +22,7 @@
 ## First you have to declare your provider and its neccessary login credentials as shown here for example.-:
 ```provider "aws" {
   region     = "ap-south-1"
-  profile    = "SATYAM"
+  profile    = "MOHIT"
 }
 ```
 
@@ -70,14 +70,14 @@ resource "aws_security_group" "allow_http" {
 resource "aws_instance" "myweb" {
 	ami		= "ami-005956c5f0f757d37"
 	instance_type	="t2.micro"
-	key_name          = "aniket1234"
+	key_name          = "mohit1234"
   	security_groups   = [ "allow_http" ]
 
 
 	 connection {
     	type        = "ssh"
     	user        = "ec2-user"
-    	private_key = file("C:/Users/Anjali/Downloads/aniket1234.pem")
+    	private_key = file("C:/Users/mohit/Downloads/mohit1234.pem")
     	host        = "${aws_instance.myweb.public_ip}"
   	}
   
@@ -91,7 +91,7 @@ resource "aws_instance" "myweb" {
 
 
 	tags = {
-		Name = "Aniketos"
+		Name = "mohitos"
 	}
 }
 
@@ -122,7 +122,7 @@ resource "aws_s3_bucket" "myuniquebucket1227" {
 resource "aws_s3_bucket_object" "s3object" {
   bucket = "${aws_s3_bucket.myuniquebucket1227.id}"
   key    = "1076883.jpg"
-  source = "C:/Users/Anjali/Downloads/1076883.jpg"
+  source = "C:/Users/mohit/Downloads/1076883.jpg"
 }
 ```
 
@@ -196,16 +196,16 @@ viewer_certificate {
 # EFS creation-: Creating an extra EFS (Elastic File System) volume. The next step is to attach this extra created volume to our instance so that it can be accessed by us from instance.
 ``` 
 resource “aws_efs_file_system” “efs_plus” {
-depends_on = [aws_security_group.abhitf_sg, aws_instance.AbhiOs1]
+depends_on = [aws_security_group.mohittf_sg, aws_instance.mohitOs1]
 creation_token = “efs”
 tags = {
-Name = “aniefs”
+Name = “mohitefs”
 }
 }
 resource “aws_efs_mount_target” “mount_efs” {depends_on = [aws_efs_file_system.efs_plus]
 file_system_id = aws_efs_file_system.efs_plus.id
-subnet_id = aws_instance.Aniketos.subnet_id
-security_groups=[aws_security_group.anitf_sg.id]
+subnet_id = aws_instance.mohitos.subnet_id
+security_groups=[aws_security_group.mohittf_sg.id]
 }
 resource “null_resource” “cluster” {
 depends_on = [
@@ -214,8 +214,8 @@ aws_efs_file_system.efs_plus,
 connection {
 type = “ssh”
 user = “ec2-user”
-private_key = file("C:/Users/Anjali/Downloads/aniket1234.pem")
-host = aws_instance.Aniketos.public_ip
+private_key = file("C:/Users/mohit/Downloads/mohit1234.pem")
+host = aws_instance.mohitos.public_ip
 }
 provisioner “remote-exec” {
 inline = [“sudo echo ${aws_efs_file_system.efs_plus.dns_name}:/var/www/html efs defaults._netdev 0 0>>sudo /etc/fstab”,
